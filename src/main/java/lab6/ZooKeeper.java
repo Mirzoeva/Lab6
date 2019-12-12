@@ -22,6 +22,7 @@ import org.asynchttpclient.AsyncHttpClient;
 import java.io.IOException;
 
 public class ZooKeeper {
+    private static final String zooKeeperHost = "127.0.0.1:2181";
     public static void main(String[] args) throws IOException {
         System.out.println(Constants.startMsg);
         Scanner in = new Scanner(System.in);
@@ -33,9 +34,15 @@ public class ZooKeeper {
         ActorRef storageActor = system.actorOf(Props.create(StorageActor::new));
 
         ZooKeeper zooKeeper = new ZooKeeper(
+                zooKeeperHost,
+                5000,
+                new zooKeeperWatcher();
+        );
+
+        zooKeeper.create(
                 
 
-        );
+        )
 
 
         final Http http = Http.get(system);
