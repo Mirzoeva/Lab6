@@ -1,4 +1,4 @@
-package lab5;
+package lab6;
 
 public class UrlTest implements Comparable<UrlTest>{
     private final String url;
