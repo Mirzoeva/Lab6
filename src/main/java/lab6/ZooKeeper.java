@@ -9,6 +9,8 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+
+import java.util.Scanner;
 import java.util.concurrent.CompletionStage;
 import org.apache.zookeeper.*;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
@@ -20,6 +22,11 @@ import java.io.IOException;
 public class ZooKeeper {
     public static void main(String[] args) throws IOException {
         System.out.println(Constants.startMsg);
+        Scanner in = new Scanner(System.in);
+        
+        Constants constants = new Constants();
+        constants.setPort(in.nextInt());
+
         ActorSystem system = ActorSystem.create("routes");
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
