@@ -16,7 +16,7 @@ import org.asynchttpclient.AsyncHttpClient;
 
 import java.io.IOException;
 
-public class AkkaStream{
+public class ZooKeeper {
     public static void main(String[] args) throws IOException {
         System.out.println(Constants.startMsg);
         ActorSystem system = ActorSystem.create("routes");
