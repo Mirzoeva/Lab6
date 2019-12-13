@@ -14,7 +14,7 @@ import akka.http.javadsl.model.HttpResponse;
 
 import java.util.Scanner;
 import java.util.concurrent.CompletionStage;
-import org.apache.zookeeper.*;
+import org.apache.zookeeper.ZooKeeper;
 
 
 import java.io.IOException;
@@ -35,22 +35,19 @@ public class ZooKeeper {
                 e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
         );
 
-        ActorSystem system = ActorSystem.create("routes");
-        ActorRef storageActor = system.actorOf(Props.create(StorageActor::new));
+        final ActorSystem system = ActorSystem.create("routes");
+        final Http http = Http.get(system);
+        final ActorMaterializer materializer = ActorMaterializer.create(system);
+        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
 
-        zooKeeper.create(
+        ActorRef storageActor = system.actorOf(StorageActor.props());
 
-
+        final ServersHandler  serversHandler = new ServersHandler(
+                zooKeeper, storageActor, 
         )
 
 
-        final Http http = Http.get(system);
-        final ActorMaterializer materializer = ActorMaterializer.create(system);
-
-//
-       final AsyncHttpClient asyncHttpClient = asyncHttpClient();
-//        final Tester tester = new Tester(asyncHttpClient, system, materializer);
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = tester.createRoute();
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
