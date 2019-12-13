@@ -7,5 +7,5 @@ public class Constants {
     static String count = "count";
     static int port = 8080;
     static String hostName = "localhost";
-    
+
 }

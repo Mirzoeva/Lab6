@@ -26,11 +26,6 @@ public class ZooKeeper {
     private static final String zooKeeperHost = "127.0.0.1:2181";
     public static void main(String[] args) throws IOException {
         System.out.println(Constants.startMsg);
-        Scanner in = new Scanner(System.in);
-
-        Constants constants = new Constants();
-        constants.setPort(in.nextInt());
-
         final ZooKeeper zooKeeper = new ZooKeeper(
                 zooKeeperHost,
                 5000,
