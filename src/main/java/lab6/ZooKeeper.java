@@ -44,9 +44,9 @@ public class ZooKeeper {
         ActorRef storageActor = system.actorOf(StorageActor.props());
 
         final ServersHandler  serversHandler = new ServersHandler(
-                zooKeeper, storageActor, 
-        )
+                zooKeeper, storageActor, "/servers");
 
+        final Anonymizationserver anonServer
 
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = tester.createRoute();
