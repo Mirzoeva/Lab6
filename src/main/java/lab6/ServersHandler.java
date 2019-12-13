@@ -54,7 +54,4 @@ public class ServersHandler {
     public  void removeAllWatches() throws Exception{
         zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
-
-
-
 }
