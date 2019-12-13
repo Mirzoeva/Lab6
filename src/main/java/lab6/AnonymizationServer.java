@@ -19,7 +19,7 @@ public class AnonymizationServer {
     private final ActorRef serversStorage;
     private final ZooKeeper zooKeeper;
 
-    public AnonymizationServer(ActorRef serversStorage, AsyncHttpClient http, ZooKeeper zooKeeper){
+    public AnonymizationServer(ActorRef serversStorage, AsyncHttpClient http, ZooKeeperClass zooKeeper){
         this.http = http;
         this.serversStorage = serversStorage;
         this.zooKeeper = zooKeeper;
