@@ -5,6 +5,8 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.model.*;
 import org.apache.zookeeper.*;
+
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import akka.pattern.Patterns;
@@ -39,4 +41,21 @@ public class ServersHandler {
     public  void removeAllWatches() throws Exception{
         zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
+
+    private  void saveServers(List<String> serversNodes){
+        this.serversStorage.tell(new PutServersMsg(serversNodes), ActorRef.noSender());
+    }
+
+    public void createServers(String name, String host, int port) throws Exception{
+        String serverPath = zooKeeper.create(
+                serversPath + "/" + name,
+                (host + ":" + port).getBytes(),
+                ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                CreateMode.EPHEMERAL
+        );
+        
+    }
+
+
+
 }
