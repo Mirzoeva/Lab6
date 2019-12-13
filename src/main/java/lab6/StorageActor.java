@@ -7,10 +7,8 @@ import junit.framework.TestResult;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.List;
 
-
-import java.util.Map;
-import java.util.TreeMap;
 
 public class StorageActor  extends AbstractActor {
     private final List<String> storage;
