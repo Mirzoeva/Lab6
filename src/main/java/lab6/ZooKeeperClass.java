@@ -41,7 +41,7 @@ public class ZooKeeperClass {
         final ServersHandler  serversHandler = new ServersHandler(
                 zooKeeper, storageActor, "/servers");
 
-        serversHandler.createServers("");
+        serversHandler.createServers("localhost:" + Constants.port, Constants.hostName, Constants.port);
 
         final AnonymizationServer anonServer = new AnonymizationServer(
                 storageActor,
