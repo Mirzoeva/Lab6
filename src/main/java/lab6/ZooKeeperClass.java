@@ -64,14 +64,7 @@ public class ZooKeeperClass {
         }
         binding
                 .thenCompose(ServerBinding::unbind)
-                .thenAccept(unbound -> {
-                    system.terminate();
-                try{
-                    asyncHttpClient.close();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-        });
+                .thenAccept(unbound -> system.terminate());
     }
 }
 
