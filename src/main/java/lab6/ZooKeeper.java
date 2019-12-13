@@ -28,14 +28,15 @@ public class ZooKeeper {
         Constants constants = new Constants();
         constants.setPort(in.nextInt());
 
-        ActorSystem system = ActorSystem.create("routes");
-        ActorRef storageActor = system.actorOf(Props.create(StorageActor::new));
-
-        ZooKeeper zooKeeper = new ZooKeeper(
+        final ZooKeeper zooKeeper = new ZooKeeper(
                 zooKeeperHost,
                 5000,
                 new zooKeeperWatcher();
         );
+
+        ActorSystem system = ActorSystem.create("routes");
+        ActorRef storageActor = system.actorOf(Props.create(StorageActor::new));
+
 
         zooKeeper.create(
 
