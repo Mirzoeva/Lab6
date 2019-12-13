@@ -1,29 +1,12 @@
 package lab6;
 
-import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.http.javadsl.model.*;
 import org.apache.zookeeper.*;
 
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import akka.pattern.Patterns;
-import akka.stream.ActorMaterializer;
-import akka.stream.javadsl.Flow;
-import akka.stream.javadsl.Keep;
-import akka.stream.javadsl.Sink;
-import akka.stream.javadsl.Source;
-import akka.util.ByteString;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.asynchttpclient.AsyncHttpClient;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
+
 
 public class ServersHandler {
     private final ZooKeeper zooKeeper;
@@ -53,7 +36,22 @@ public class ServersHandler {
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL
         );
-        Logger.getLogger(ServersHandler.class.getName()).info();
+        Logger.getLogger(ServersHandler.class.getName()).info("Created Server Path: " + serverPath);
+    }
+
+    private void watchChildrenCallback(WatchedEvent event){
+        if (event != null){
+            Logger.getLogger(ServersHandler.class.getName()).info(event.toString());
+        }
+        try {
+            saveServers(
+                    zooKeeper.getChildren(serversPath, this::watchChildrenCallback).stream()
+                    .map(s -> serversPath + "/" + s)
+                    .collect(Collectiors.toList())
+            );
+        } catch (KeeperException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
