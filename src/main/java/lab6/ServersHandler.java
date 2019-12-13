@@ -25,7 +25,7 @@ public class ServersHandler {
     private final ActorRef storage;
     private final AsyncHttpClient asyncHttpClient;
     private int count;
-    private 
+    private
 
     public ServersHandler(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
