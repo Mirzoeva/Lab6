@@ -48,7 +48,7 @@ public class ServersHandler {
             saveServers(
                     zooKeeper.getChildren(serversPath, this::watchChildrenCallback).stream()
                     .map(s -> serversPath + "/" + s)
-                    .collect(Collectiors.toList())
+                    .collect(Collectors.toList())
             );
         } catch (KeeperException | InterruptedException e) {
             throw new RuntimeException(e);
