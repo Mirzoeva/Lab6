@@ -31,7 +31,7 @@ public class AnonymizationServer {
 
     public Route createRoute(){
         return route(
-                get( () -> parameter("url", url ->
+                get(() -> parameter("url", url ->
                                 parameter( "count", count ->
                                         handleGetWithUUrlCount(url, Integer.parseInt(count))
                                 )
