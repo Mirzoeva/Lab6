@@ -3,6 +3,7 @@ package lab6;
 import akka.actor.ActorRef;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.server.Route;
+import akka.pattern.Patterns;
 
 
 public class AnonymizationServer {
