@@ -1,7 +1,6 @@
 package lab6;
 
 import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
 import org.apache.zookeeper.*;
 
 import java.util.List;
@@ -15,15 +14,11 @@ public class ServersHandler {
     private final ActorRef serversStorage;
 
 
-    public ServersHandler(ZooKeeper zooKeeper, ActorSystem serversStorage, String serversPath){
+    public ServersHandler(ZooKeeper zooKeeper, ActorRef serversStorage, String serversPath){
         this.zooKeeper = zooKeeper;
         this.serversStorage = serversStorage;
         this.serversPath = serversPath;
 
-    }
-
-    public  void removeAllWatches() throws Exception{
-        zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
 
     private  void saveServers(List<String> serversNodes){
@@ -53,6 +48,10 @@ public class ServersHandler {
         } catch (KeeperException | InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public  void removeAllWatches() throws Exception{
+        zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
 
 
