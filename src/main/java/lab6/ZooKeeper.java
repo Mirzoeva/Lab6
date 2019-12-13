@@ -15,6 +15,7 @@ import java.util.Scanner;
 import java.util.concurrent.CompletionStage;
 import org.apache.zookeeper.ZooKeeper;
 import org.asynchttpclient.AsyncHttpClient;
+import java.util.logging.Logger;
 
 
 import java.io.IOException;
