@@ -14,6 +14,7 @@ import akka.http.javadsl.model.HttpResponse;
 import java.util.Scanner;
 import java.util.concurrent.CompletionStage;
 import org.apache.zookeeper.ZooKeeper;
+import org.asynchttpclient.AsyncHttpClient;
 
 
 import java.io.IOException;
