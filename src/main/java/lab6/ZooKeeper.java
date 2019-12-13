@@ -6,21 +6,19 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
-import akka.stream.ActorMaterializer;
-import akka.stream.javadsl.Flow;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
-
-import java.util.Scanner;
-import java.util.concurrent.CompletionStage;
+import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
 import org.apache.zookeeper.ZooKeeper;
 import org.asynchttpclient.AsyncHttpClient;
+
+import java.util.concurrent.CompletionStage;
 import java.util.logging.Logger;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class ZooKeeper {
     private static final String zooKeeperHost = "127.0.0.1:2181";
@@ -43,7 +41,7 @@ public class ZooKeeper {
         final ServersHandler  serversHandler = new ServersHandler(
                 zooKeeper, storageActor, "/servers");
 
-        final Anonymizationserver anonServer = new Anonymizationserver(
+        final AnonymizationServer anonServer = new AnonymizationServer(
                 storageActor,
                 asyncHttpClient,
                 zooKeeper
