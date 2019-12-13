@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
 
 
 public class ServersHandler {
-    private final ZooKeeper zooKeeper;
+    private final ZooKeeperClass zooKeeperClass;
     private final String serversPath;
     private final ActorRef serversStorage;
 
 
-    public ServersHandler(ZooKeeper zooKeeper, ActorRef serversStorage, String serversPath){
-        this.zooKeeper = zooKeeper;
+    public ServersHandler(ZooKeeperClass zooKeeperClass, ActorRef serversStorage, String serversPath){
+        this.zooKeeperClass = zooKeeperClass;
         this.serversStorage = serversStorage;
         this.serversPath = serversPath;
 
@@ -26,7 +26,7 @@ public class ServersHandler {
     }
 
     public void createServers(String name, String host, int port) throws Exception{
-        String serverPath = zooKeeper.create(
+        String serverPath = zooKeeperClass.create(
                 serversPath + "/" + name,
                 (host + ":" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
@@ -41,7 +41,7 @@ public class ServersHandler {
         }
         try {
             saveServers(
-                    zooKeeper.getChildren(serversPath, this::watchChildrenCallback).stream()
+                    zooKeeperClass.getChildren(serversPath, this::watchChildrenCallback).stream()
                     .map(s -> serversPath + "/" + s)
                     .collect(Collectors.toList())
             );
@@ -51,7 +51,7 @@ public class ServersHandler {
     }
 
     public  void removeAllWatches() throws Exception{
-        zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
+        zooKeeperClass.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
 
 
