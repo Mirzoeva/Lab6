@@ -6,6 +6,7 @@ import org.apache.zookeeper.*;
 
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 
 public class ServersHandler {
