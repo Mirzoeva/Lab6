@@ -5,11 +5,7 @@ public class Constants {
     static String url = "testUrl";
     static String startMsg = "Start!";
     static String count = "count";
-    static int port;
+    static int port = 8080;
     static String hostName = "localhost";
-
-    public void setPort(int port){
-        port = port;
-    }
-
+    
 }
