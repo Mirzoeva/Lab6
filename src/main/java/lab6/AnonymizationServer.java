@@ -7,6 +7,7 @@ import akka.pattern.Patterns;
 import org.asynchttpclient.Response;
 
 import java.net.ConnectException;
+import java.time.Duration;
 import java.util.concurrent.CompletionStage;
 
 
