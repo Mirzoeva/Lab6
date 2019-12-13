@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8edd27cb-3795-43cb-bbaa-19ba7cf4272e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/ZooKeeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/ZooKeeperClass.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ZooKeeperClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="286">
+              <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,10 +46,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lab6/StorageActor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="75">
+              <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#1011#1012#0" expanded="true" />
                 <element signature="e#1063#1064#0" expanded="true" />
               </folding>
@@ -126,11 +123,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="332">
+              <caret line="55" column="7" selection-start-line="53" selection-start-column="6" selection-end-line="55" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -231,7 +231,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576276649782" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576276786157" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -261,12 +261,12 @@
       <updated>1576266027989</updated>
       <workItem from="1576266029211" duration="959000" />
       <workItem from="1576267035329" duration="866000" />
-      <workItem from="1576267942132" duration="6718000" />
+      <workItem from="1576267942132" duration="7028000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8543000" />
+    <option name="totallyTimeSpent" value="8853000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="582" y="0" width="858" height="900" extended-state="0" />
@@ -279,7 +279,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" visible="true" weight="0.10120482" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.36506024" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891566" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -321,13 +321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lab6/DeleteServerMsg.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -341,22 +334,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/GetRandomServerMsg.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="38" />
+          <folding>
+            <element signature="e#2452#2453#0" expanded="true" />
+            <element signature="e#2521#2522#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/PutServersMsg.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/StorageActor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="75">
+          <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding>
-            <element signature="e#160#161#0" expanded="true" />
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#1011#1012#0" expanded="true" />
+            <element signature="e#1063#1064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -374,43 +369,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/StorageActor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/PutServersMsg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1011#1012#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
+            <element signature="e#160#161#0" expanded="true" />
+            <element signature="e#198#199#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+            <element signature="e#268#269#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/GetRandomServerMsg.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="38" />
+        <state relative-caret-position="30">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="55" column="7" selection-start-line="53" selection-start-column="6" selection-end-line="55" selection-end-column="7" />
           <folding>
-            <element signature="e#2452#2453#0" expanded="true" />
-            <element signature="e#2521#2522#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ZooKeeperClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="286">
+          <caret line="45" column="32" lean-forward="true" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
