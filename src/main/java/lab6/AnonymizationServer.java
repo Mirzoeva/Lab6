@@ -6,6 +6,7 @@ import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import org.asynchttpclient.Response;
 
+import java.net.ConnectException;
 import java.util.concurrent.CompletionStage;
 
 
@@ -37,7 +38,7 @@ public class AnonymizationServer {
                 fetch(http.prepareGet(url).build()) : redirectToAnother(url, count - 1);
         return completeOKWithFutureString(responseCompletionStage.thenApply(Response::getResponseBody));
     }
-    
+
 
 
 }
