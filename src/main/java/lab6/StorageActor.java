@@ -3,8 +3,6 @@ package lab6;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
-import junit.framework.TestResult;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.List;
@@ -25,8 +23,26 @@ public class StorageActor  extends AbstractActor {
     @Override
     public Receive createReceive(){
         return receiveBuilder()
-                .match(UrlTest.class, msg -> getSender().tell(new TestResult(msg, storage.get(msg)), ActorRef.noSender()))
-                .match(TestResult.class, msg -> storage.put(msg.getUrltest(), msg.getMiddleValue()))
+                .match(PutServersMsg.class, this::receivePutServerMsg)
+                .match(GetRandomServerMsg.class, this::receiveGetRandomServerMsg)
+                .match(DeleteServerMsg.class, this::receiveDeleteServerMsg)
                 .build();
     }
+
+    private void receivePutServerMsg(PutServersMsg msg){
+        this.storage.clear();
+        this.storage.addAll(msg.getServers());
+    }
+
+    private void receiveDeleteServerMsg(DeleteServerMsg msg){
+        this.storage.remove(msg.getServer());
+    }
+
+    private void receiveGetRandomServerMsg(GetRandomServerMsg msg){
+        getSender().tell(
+                new ReturnServerMsg(storage.get(random.nextInt(storage.size()))),
+                ActorRef.noSender()
+        );
+    }
+
 }
