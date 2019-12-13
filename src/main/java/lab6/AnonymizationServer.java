@@ -4,6 +4,9 @@ import akka.actor.ActorRef;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
+import org.asynchttpclient.Response;
+
+import java.util.concurrent.CompletionStage;
 
 
 public class AnonymizationServer {
@@ -30,7 +33,10 @@ public class AnonymizationServer {
     }
 
     private Route handleGetWithUUrlCount(String url, int count){
-        
+        CompletionStage<Response> responseCompletionStage = count == 0?
+                fetch(http.prepareGet(url).build()) : redirectToAnother(url, count - 1);
+        return completeOK
+
 
     }
 
