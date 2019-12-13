@@ -47,7 +47,7 @@ public class ZooKeeper {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
 
 //
-//        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
+       final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 //        final Tester tester = new Tester(asyncHttpClient, system, materializer);
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = tester.createRoute();
