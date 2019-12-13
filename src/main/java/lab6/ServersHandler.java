@@ -20,13 +20,14 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
-public class Tester {
+public class ServersHandler {
     private final ActorMaterializer materializer;
     private final ActorRef storage;
     private final AsyncHttpClient asyncHttpClient;
     private int count;
+    private 
 
-    public Tester(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
+    public ServersHandler(AsyncHttpClient asyncHttpClient, ActorSystem system, ActorMaterializer materializer){
         this.asyncHttpClient = asyncHttpClient;
         this.materializer = materializer;
         this.storage = system.actorOf(StorageActor.props());
