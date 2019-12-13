@@ -35,10 +35,9 @@ public class AnonymizationServer {
     private Route handleGetWithUUrlCount(String url, int count){
         CompletionStage<Response> responseCompletionStage = count == 0?
                 fetch(http.prepareGet(url).build()) : redirectToAnother(url, count - 1);
-        return completeOK
-
-
+        return completeOKWithFutureString(responseCompletionStage.thenApply(Response::getResponseBody));
     }
+    
 
 
 }
