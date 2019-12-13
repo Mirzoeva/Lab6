@@ -2,6 +2,7 @@ package lab6;
 
 import akka.actor.ActorRef;
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.ZooKeeper;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -9,13 +10,13 @@ import java.util.stream.Collectors;
 
 
 public class ServersHandler {
-    private final ZooKeeperClass zooKeeperClass;
+    private final ZooKeeper zooKeeper;
     private final String serversPath;
     private final ActorRef serversStorage;
 
 
-    public ServersHandler(ZooKeeperClass zooKeeperClass, ActorRef serversStorage, String serversPath){
-        this.zooKeeperClass = zooKeeperClass;
+    public ServersHandler(ZooKeeper zooKeeper, ActorRef serversStorage, String serversPath){
+        this.zooKeeper = zooKeeper;
         this.serversStorage = serversStorage;
         this.serversPath = serversPath;
 
@@ -26,7 +27,7 @@ public class ServersHandler {
     }
 
     public void createServers(String name, String host, int port) throws Exception{
-        String serverPath = zooKeeperClass.create(
+        String serverPath = zooKeeper.create(
                 serversPath + "/" + name,
                 (host + ":" + port).getBytes(),
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
@@ -41,7 +42,7 @@ public class ServersHandler {
         }
         try {
             saveServers(
-                    zooKeeperClass.getChildren(serversPath, this::watchChildrenCallback).stream()
+                    zooKeeper.getChildren(serversPath, this::watchChildrenCallback).stream()
                     .map(s -> serversPath + "/" + s)
                     .collect(Collectors.toList())
             );
@@ -51,7 +52,7 @@ public class ServersHandler {
     }
 
     public  void removeAllWatches() throws Exception{
-        zooKeeperClass.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
+        zooKeeper.removeAllWatches(serversPath, Watcher.WatcherType.Any, true);
     }
 
 

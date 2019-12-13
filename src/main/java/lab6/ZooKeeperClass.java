@@ -10,6 +10,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.ZooKeeper;
 import org.asynchttpclient.AsyncHttpClient;
 
 import java.util.concurrent.CompletionStage;
@@ -23,10 +24,10 @@ public class ZooKeeperClass {
     private static final String zooKeeperHost = "127.0.0.1:2181";
     public static void main(String[] args) throws IOException {
         System.out.println(Constants.startMsg);
-        final ZooKeeperClass zooKeeperClass = new ZooKeeperClass(
+        final ZooKeeper zooKeeper = new ZooKeeper(
                 zooKeeperHost,
                 5000,
-                e -> Logger.getLogger(ZooKeeperClass.class.getName()).info(e.toString())
+                e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
         );
 
         final ActorSystem system = ActorSystem.create("routes");
@@ -38,12 +39,12 @@ public class ZooKeeperClass {
         ActorRef storageActor = system.actorOf(StorageActor.props());
 
         final ServersHandler  serversHandler = new ServersHandler(
-                zooKeeperClass, storageActor, "/servers");
+                zooKeeper, storageActor, "/servers");
 
         final AnonymizationServer anonServer = new AnonymizationServer(
                 storageActor,
                 asyncHttpClient,
-                zooKeeperClass
+                zooKeeper
         );
 
 
@@ -56,7 +57,11 @@ public class ZooKeeperClass {
 
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
-        zooKeeperClass.close();
+        try {
+            zooKeeper.close();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> {
