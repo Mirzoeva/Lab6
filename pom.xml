@@ -20,7 +20,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>lab6.ZooKeeper</mainClass>
+                    <mainClass>lab6.ZooKeeperClass</mainClass>
                 </configuration>
             </plugin>
         </plugins>
