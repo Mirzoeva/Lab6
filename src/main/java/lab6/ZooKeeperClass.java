@@ -41,6 +41,8 @@ public class ZooKeeperClass {
         final ServersHandler  serversHandler = new ServersHandler(
                 zooKeeper, storageActor, "/servers");
 
+        serversHandler.createServers("");
+
         final AnonymizationServer anonServer = new AnonymizationServer(
                 storageActor,
                 asyncHttpClient,
