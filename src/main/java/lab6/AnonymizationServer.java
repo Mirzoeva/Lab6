@@ -47,7 +47,42 @@ public class AnonymizationServer {
         return completeOKWithFutureString(responseCompletionStage.thenApply(Response::getResponseBody));
     }
 
-    
+    private CompletionStage<Response> redirectToAnother(String url, int count) {
+        return  Patterns.ask(serversStorage, new GetRandomServerMsg(), Duration.ofSeconds(3))
+                .thenApply(o -> ((ReturnServerMsg)o).get())
+                .thenCompose(znode ->
+                        fetch(createServerRequest(getServerUrl(znode), url, count))
+                                .handle((resp, ex) -> handleBadRedirection(resp, ex, znode))
+                );
+    }
+
+    private Response handleBadRedirection(Response resp, Throwable ex, String znode) {
+        if (ex instanceof ConnectException) {
+            serversStorage.tell(new DeleteServerMsg(znode), ActorRef.noSender());
+        }
+        return resp;
+    }
+
+    private CompletionStage<Response> fetch(Request req) {
+        return http.executeRequest(req).toCompletableFuture();
+    }
+
+    private Request createServerRequest(String serverUrl, String url, int count) {
+        return http.prepareGet(serverUrl)
+                .addQueryParam("url", url)
+                .addQueryParam("count", Integer.toString(count))
+                .build();
+    }
+
+    private String getServerUrl(String serverZNode) {
+        try {
+            return new String(zooKeeper.getData(serverZNode, false, null));
+        } catch (KeeperException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 
