@@ -18,6 +18,7 @@ import org.apache.zookeeper.*;
 
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class ZooKeeper {
     private static final String zooKeeperHost = "127.0.0.1:2181";
@@ -31,7 +32,7 @@ public class ZooKeeper {
         final ZooKeeper zooKeeper = new ZooKeeper(
                 zooKeeperHost,
                 5000,
-                new zooKeeperWatcher();
+                e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
         );
 
         ActorSystem system = ActorSystem.create("routes");
