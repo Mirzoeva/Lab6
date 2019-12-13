@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ZooKeeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+            <state relative-caret-position="914">
+              <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,7 +118,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576265451633" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576265539771" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -149,12 +149,12 @@
       <workItem from="1576164231979" duration="3000" />
       <workItem from="1576164517903" duration="85000" />
       <workItem from="1576164619178" duration="1556000" />
-      <workItem from="1576263710198" duration="1736000" />
+      <workItem from="1576263710198" duration="2095000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3418000" />
+    <option name="totallyTimeSpent" value="3777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="814" y="0" width="626" height="900" extended-state="6" />
@@ -210,8 +210,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/lab6/ZooKeeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
+        <state relative-caret-position="914">
+          <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

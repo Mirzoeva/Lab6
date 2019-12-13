@@ -46,10 +46,14 @@ public class ZooKeeper {
         final ServersHandler  serversHandler = new ServersHandler(
                 zooKeeper, storageActor, "/servers");
 
-        final Anonymizationserver anonServer
+        final Anonymizationserver anonServer = new Anonymizationserver(
+                storageActor,
+                asyncHttpClient,
+                zooKeeper
+        );
 
 
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = tester.createRoute();
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = anonServer.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost(Constants.hostName, Constants.port),
@@ -58,6 +62,7 @@ public class ZooKeeper {
 
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
+        zooKeeper.close();
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> {
