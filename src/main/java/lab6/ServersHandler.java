@@ -53,7 +53,7 @@ public class ServersHandler {
                 ZooDefs.Ids.OPEN_ACL_UNSAFE,
                 CreateMode.EPHEMERAL
         );
-        
+        Logger.getLogger(ServersHandler.class.getName()).info();
     }
 
 
