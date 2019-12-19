@@ -3,6 +3,7 @@ package lab6;
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
@@ -10,21 +11,21 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
-import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.*;
 
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 import java.util.logging.Logger;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 
-import java.io.IOException;
-
 public class ZooKeeperClass {
     private static final String zooKeeperHost = "127.0.0.1:2181";
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, KeeperException, InterruptedException  {
         System.out.println(Constants.startMsg);
-        final ZooKeeper zooKeeper = new ZooKeeper(
+        final ZooKeeper keeper = new ZooKeeper(
                 zooKeeperHost,
                 5000,
                 e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
@@ -36,17 +37,20 @@ public class ZooKeeperClass {
         final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
 
-        ActorRef storageActor = system.actorOf(StorageActor.props());
+        ActorRef storageActor = system.actorOf(Props.create(StorageActor.class));
 
         final ServersHandler  serversHandler = new ServersHandler(
-                zooKeeper, storageActor, "/servers");
+                keeper, storageActor, "/servers");
 
-        serversHandler.createServers("localhost:8080", Constants.hostName, Constants.port);
-
+        try {
+            serversHandler.createServers("localhost:" + Constants.port, Constants.hostName, Constants.port);
+        } catch (KeeperException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         final AnonymizationServer anonServer = new AnonymizationServer(
                 storageActor,
                 asyncHttpClient,
-                zooKeeper
+                keeper
         );
 
 
@@ -60,10 +64,11 @@ public class ZooKeeperClass {
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
         System.in.read();
         try {
-            zooKeeper.close();
-        } catch (InterruptedException e) {
+            keeper.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        asyncHttpClient.close();
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());

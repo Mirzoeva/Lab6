@@ -17,7 +17,7 @@ import static akka.http.javadsl.server.Directives.*;
 public class AnonymizationServer {
     private final AsyncHttpClient http;
     private final ActorRef serversStorage;
-    private final org.apache.zookeeper.ZooKeeper zooKeeper;
+    private final ZooKeeper zooKeeper;
 
     public AnonymizationServer(ActorRef serversStorage, AsyncHttpClient http, ZooKeeper zooKeeper){
         this.http = http;
@@ -39,7 +39,7 @@ public class AnonymizationServer {
 
     private Route handleGetWithUUrlCount(String url, int count){
         CompletionStage<Response> responseCompletionStage = count == 0?
-                fetch(http.prepareGet(url).build()) : redirectToAnother(url, count - 1);
+                fetch(http.prepareGet(url).build()) : redirectToAnother(url, count);
         return completeOKWithFutureString(responseCompletionStage.thenApply(Response::getResponseBody));
     }
 
@@ -64,6 +64,7 @@ public class AnonymizationServer {
     }
 
     private Request createServerRequest(String serverUrl, String url, int count) {
+        count -=1;
         return http.prepareGet(serverUrl)
                 .addQueryParam("url", url)
                 .addQueryParam("count", Integer.toString(count))
