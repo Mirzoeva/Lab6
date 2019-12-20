@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8edd27cb-3795-43cb-bbaa-19ba7cf4272e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/AnonymizationServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/ServersHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lab6/ZooKeeperClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lab6/ZooKeeperClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lab6/AnonymizationServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lab6/AnonymizationServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lab6/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lab6/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/lab6/ServersHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/lab6/ServersHandler.class" afterDir="false" />
-    </list>
+    <list default="true" id="8edd27cb-3795-43cb-bbaa-19ba7cf4272e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,15 +251,16 @@
       <workItem from="1576267035329" duration="866000" />
       <workItem from="1576267942132" duration="12193000" />
       <workItem from="1576367177747" duration="2174000" />
-      <workItem from="1576789742362" duration="700000" />
+      <workItem from="1576789742362" duration="849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16892000" />
+    <option name="totallyTimeSpent" value="17041000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19384836" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
