@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ServersHandler {
+public class ZooKeeperServer {
     private  ZooKeeper keeper;
     private int port;
     private final ActorRef serversStorage;
 
 
-    public ServersHandler(ActorRef storeActor, int port){
+    public ZooKeeperServer(ActorRef storeActor, int port){
         try{
             keeper = new ZooKeeper(
                     "127.0.0.1:2181",
@@ -28,6 +28,7 @@ public class ServersHandler {
         this.serversStorage = storeActor;
         this.port = port;
         watchChildrenCallback();
+        createNode();
     }
 
     private void watchChildrenCallback(){
@@ -54,10 +55,7 @@ public class ServersHandler {
             e.printStackTrace();
         }
     }
-
-    private  void saveServers(List<String> serversNodes){
-        this.serversStorage.tell(new PutServersMsg(serversNodes), ActorRef.noSender());
-    }
+    
 
     public void createNode() {
         try {

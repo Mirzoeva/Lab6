@@ -23,6 +23,8 @@ public class AnonymizationServer {
         this.http = http;
         this.serversStorage = serversStorage;
         this.port = port;
+
+        new ZooKeeperServer(serversStorage, port);
     }
 
     public Route createRoute(){
