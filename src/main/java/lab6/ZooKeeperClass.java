@@ -35,7 +35,7 @@ public class ZooKeeperClass {
         ActorRef storageActor = system.actorOf(Props.create(StorageActor.class));
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        Server server = new Server(storeActor, http, port);
+        AnonymizationServer server = new AnonymizationServer(storageActor, http, Constants.port);
 
 
 //        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
@@ -56,9 +56,8 @@ public class ZooKeeperClass {
 //                asyncHttpClient,
 //                keeper
 //        );
-
-
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = anonServer.createRoute().flow(system, materializer);
+        
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = server.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost(Constants.hostName, Constants.port),
@@ -66,13 +65,11 @@ public class ZooKeeperClass {
         );
 
         System.out.println("Server online at http://localhost:8080/\nPress RETURN to stop...");
-        System.in.read();
         try {
-            keeper.close();
+            System.in.read();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        asyncHttpClient.close();
         binding
                 .thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
