@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class StorageActor  extends AbstractActor {
-    private final List<String> storage;
+    private List<String> storage;
     private final Random random;
 
     public StorageActor(){
@@ -29,10 +29,9 @@ public class StorageActor  extends AbstractActor {
     }
 
     private void receivePutServerMsg(PutServersMsg msg){
-        this.storage.clear();
-        this.storage.addAll(msg.getServers());
+        this.storage = msg.getServers();
     }
-    
+
     private void receiveGetRandomServerMsg(GetRandomServerMsg msg){
         getSender().tell(
                 new ReturnServerMsg(storage.get(random.nextInt(storage.size()))),
