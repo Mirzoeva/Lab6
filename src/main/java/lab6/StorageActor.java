@@ -25,7 +25,6 @@ public class StorageActor  extends AbstractActor {
         return receiveBuilder()
                 .match(PutServersMsg.class, this::receivePutServerMsg)
                 .match(GetRandomServerMsg.class, this::receiveGetRandomServerMsg)
-                .match(DeleteServerMsg.class, this::receiveDeleteServerMsg)
                 .build();
     }
 
@@ -33,11 +32,7 @@ public class StorageActor  extends AbstractActor {
         this.storage.clear();
         this.storage.addAll(msg.getServers());
     }
-
-    private void receiveDeleteServerMsg(DeleteServerMsg msg){
-        this.storage.remove(msg.getServer());
-    }
-
+    
     private void receiveGetRandomServerMsg(GetRandomServerMsg msg){
         getSender().tell(
                 new ReturnServerMsg(storage.get(random.nextInt(storage.size()))),
