@@ -1,6 +1,7 @@
 package lab6;
 
 import akka.actor.ActorRef;
+import akka.http.javadsl.Http;
 import org.apache.zookeeper.ZooKeeper;
 import org.asynchttpclient.AsyncHttpClient;
 import akka.http.javadsl.server.Route;
@@ -15,14 +16,14 @@ import static akka.http.javadsl.server.Directives.*;
 
 
 public class AnonymizationServer {
-    private final AsyncHttpClient http;
+    private final Http http;
     private final ActorRef serversStorage;
-    private final ZooKeeper zooKeeper;
+    private int port;
 
-    public AnonymizationServer(ActorRef serversStorage, AsyncHttpClient http, ZooKeeper zooKeeper){
+    public AnonymizationServer(ActorRef serversStorage, Http http, int port){
         this.http = http;
         this.serversStorage = serversStorage;
-        this.zooKeeper = zooKeeper;
+        this.port = port;
     }
 
     public Route createRoute(){
