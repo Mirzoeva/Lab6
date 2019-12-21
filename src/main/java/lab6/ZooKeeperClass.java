@@ -25,33 +25,37 @@ public class ZooKeeperClass {
     private static final String zooKeeperHost = "127.0.0.1:2181";
     public static void main(String[] args) throws IOException, KeeperException, InterruptedException  {
         System.out.println(Constants.startMsg);
-        final ZooKeeper keeper = new ZooKeeper(
-                zooKeeperHost,
-                5000,
-                e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
-        );
+//        final ZooKeeper keeper = new ZooKeeper(
+//                zooKeeperHost,
+//                5000,
+//                e -> Logger.getLogger(ZooKeeper.class.getName()).info(e.toString())
+//        );
 
         final ActorSystem system = ActorSystem.create("routes");
+        ActorRef storageActor = system.actorOf(Props.create(StorageActor.class));
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
+        Server server = new Server(storeActor, http, port);
 
 
-        ActorRef storageActor = system.actorOf(Props.create(StorageActor.class));
+//        final AsyncHttpClient asyncHttpClient = asyncHttpClient();
 
-        final ServersHandler  serversHandler = new ServersHandler(
-                keeper, storageActor, "/servers");
+//
 
-        try {
-            serversHandler.createServers("localhost:" + Constants.port, Constants.hostName, Constants.port);
-        } catch (KeeperException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        final AnonymizationServer anonServer = new AnonymizationServer(
-                storageActor,
-                asyncHttpClient,
-                keeper
-        );
+//
+//        final ServersHandler  serversHandler = new ServersHandler(
+//                keeper, storageActor, "/servers");
+//
+//        try {
+//            serversHandler.createServers("localhost:" + Constants.port, Constants.hostName, Constants.port);
+//        } catch (KeeperException | InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        final AnonymizationServer anonServer = new AnonymizationServer(
+//                storageActor,
+//                asyncHttpClient,
+//                keeper
+//        );
 
 
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = anonServer.createRoute().flow(system, materializer);
