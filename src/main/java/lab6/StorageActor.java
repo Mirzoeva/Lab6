@@ -33,10 +33,7 @@ public class StorageActor  extends AbstractActor {
     }
 
     private void receiveGetRandomServerMsg(GetRandomServerMsg msg){
-        getSender().tell(
-                new ReturnServerMsg(storage.get(random.nextInt(storage.size()))),
-                ActorRef.noSender()
-        );
+        sender().tell(storage.get(random.nextInt(storage.size())), self());
     }
 
 }
